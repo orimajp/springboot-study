@@ -1,0 +1,1 @@
+LocalDateTimeに関する調査結果の格納。
