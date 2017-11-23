@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>入力画面</title>
+</head>
+<body>
+
+<h1>値を入力</h1>
+<form th:action="@{/post}" th:object="${testForm}" method="post">
+	<div>
+		<input type="text" th:field="*{test}" />
+		<p th:if="${#fields.hasErrors('test')}" th:erros="*{test}">error</p>
+	</div>
+	<input type="submit" name="送信" />
+</form>
+
+</body>
+</html>
