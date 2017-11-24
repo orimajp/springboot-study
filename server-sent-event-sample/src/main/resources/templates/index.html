@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Server Sent Eventsサンプル</title>
+</head>
+<body>
+<h1>Server Send Eventsサンプル</h1>
+
+<ul id="message"></ul>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script>
+	$(function () {
+		(function getGreetingMessage() {
+			var messageUl = $('#message');
+			if (window.EventSource) {
+				var sse = new EventSource('/greeting');
+				sse.onopen = function (e) {
+					console.log('接続を開始しました。')
+				};
+				sse.onmessage = function (e) {
+					console.log('event occured.');
+					var newLi = '<li>' + 'id:' + e.lastEventId + ' data:' + e.data + '</li>';
+					messageUl.append(newLi);
+				};
+				sse.onerror = function (e) {
+					if (sse.readyState !== 1) {
+						console.log('エラーが発生したため切断します。readyState=' + sse.readyState);
+						sse.close();
+					}
+				};
+			} else {
+				alert('未対応のブラウザです。');
+			}
+		})();
+	});
+</script>
+</body>
+</html>
