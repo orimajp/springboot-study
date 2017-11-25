@@ -1,0 +1,16 @@
+package com.example.flywayh2dbmysqlmodetrouble;
+
+import lombok.Data;
+import org.seasar.doma.Entity;
+import org.seasar.doma.Id;
+
+@Entity
+@Data
+public class Greeting {
+
+	@Id
+	private Integer id;
+
+	private String message;
+
+}

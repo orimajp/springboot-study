@@ -1,0 +1,42 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.8.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+// Doma setting
+processResources.destinationDir = compileJava.destinationDir
+processTestResources.destinationDir = compileTestJava.destinationDir
+compileJava.dependsOn processResources
+compileTestJava.dependsOn processTestResources
+
+idea.module.outputDir = compileJava.destinationDir
+idea.module.testOutputDir = compileTestJava.destinationDir
+
+dependencies {
+	compile('org.flywaydb:flyway-core')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	runtime('com.h2database:h2')
+	compileOnly('org.projectlombok:lombok')
+	compile group: 'org.seasar.doma.boot', name: 'doma-spring-boot-starter', version: '1.1.1'
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
