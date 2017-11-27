@@ -1,0 +1,10 @@
+insert into process_status (complete) values (false);
+insert into process_status (complete) values (false);
+insert into process_status (complete) values (false);
+insert into process_status (complete) values (false);
+insert into process_status (complete) values (false);
+insert into process_status (complete) values (false);
+insert into process_status (complete) values (false);
+insert into process_status (complete) values (false);
+insert into process_status (complete) values (false);
+insert into process_status (complete) values (false);

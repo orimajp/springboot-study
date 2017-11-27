@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>入力画面</title>
+	<style>
+		.error_msg {
+			color: red;
+		}
+	</style>
+</head>
+<body>
+
+<h1>開始日、終了日チェック</h1>
+
+<form th:action="@{/post}" th:object="${testForm}" method="post">
+	<div>
+		<label for="startDate">開始日</label>
+		<input type="text" id="startDate" th:field="*{startDate}">
+	</div>
+	<div>
+		<label for="endDate">終了日</label>
+		<input type="text" id="endDate" th:field="*{endDate}">
+		<span class="error_msg" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}">error!</span>
+	</div>
+	<div>
+		<input type="submit" value="送信">
+	</div>
+</form>
+
+</body>
+</html>
