@@ -10,4 +10,9 @@ public interface Crying<T extends Animal> {
 
 	String cry(T t);
 
+	// この例では、以下のようにすれば実装クラスでのメソッド実装は必須ではなくなるが...
+/*	default String cry(T t) {
+		return getMessage(t.getName(), t.getCry());
+	}*/
+
 }
