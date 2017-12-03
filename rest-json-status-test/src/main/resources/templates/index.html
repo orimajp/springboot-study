@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="_csrf" th:content="${_csrf.token}" />
+	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+	<title>テストページ</title>
+</head>
+<body>
+<h1 th:inline="text">こんにちは [[${#httpServletRequest.remoteUser}]]</h1>
+
+<h2>REST(Ajax)テスト</h2>
+<div>
+	<input type="button" id="okButton" value="OKパターン">
+</div>
+
+<div>
+	<input type="button" id="getRequiredErrorButton" value="GET必須チェックエラー">
+</div>
+
+<div>
+	<input type="button" id="getValidateErrorButton" value="GETデータ型バリデートエラー">
+</div>
+
+<div>
+	<input type="button" id="serverErrorRestButton" value="サーバエラー">
+</div>
+
+<div>
+	<input type="button" id="adminrest" value="ADMINユーザのみ">
+</div>
+
+<div>
+	<input type="button" id="notfound" value="リンク切れ">
+</div>
+
+<h2>Webテスト</h2>
+<div>
+	<a th:href="@{/okrequest}">OKパターン(GET)</a>
+</div>
+<div>
+	<form th:action="@{/okrequest}" method="post">
+		<input type="submit" value="OKパターン(POST)">
+	</form>
+</div>
+
+<div>
+	<a th:href="@{/paramcheck}">GET引数無しエラー</a>
+</div>
+<div>
+	<a th:href="@{paramcheck(value=${'aaa'})}">GETデータ型バリデートエラー</a>
+</div>
+<div>
+	<a th:href="@{/internalservererror}">サーバエラー</a>
+</div>
+<div>
+	<a th:href="@{/adminonly}">ADMINユーザのみ</a>
+</div>
+<div>
+	<a th:href="@{/notfound}">リンク切れ</a>
+</div>
+
+<hr>
+
+<form th:action="@{/logout}" method="post">
+	<input type="submit" value="ログアウト">
+</form>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>
